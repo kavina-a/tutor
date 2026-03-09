@@ -55,7 +55,7 @@ export default function WaCloud() {
       <a
         ref={btnRef}
         className="wa-float-btn"
-        href="https://wa.me/447XXXXXXXXX"
+        href="https://wa.me/44760796819?text=Hi%20Kavina!%20I%27d%20love%20to%20book%20a%20free%20trial%20session%20%F0%9F%99%8C"
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Book a free session on WhatsApp"
