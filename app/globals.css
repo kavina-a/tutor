@@ -174,6 +174,18 @@ video {
   z-index: 1;
   pointer-events: none;
   will-change: opacity;
+  /* suppress any native browser media-controls overlay on mobile */
+  -webkit-media-controls: none;
+}
+
+/* Hide the iOS/Android native play button that appears when autoplay is
+   initially blocked — the JS useEffect will start playback immediately. */
+.loader-video::-webkit-media-controls,
+.loader-video::-webkit-media-controls-panel,
+.loader-video::-webkit-media-controls-play-button,
+.loader-video::-webkit-media-controls-start-playback-button {
+  display: none !important;
+  -webkit-appearance: none;
 }
 
 .loader-center {
