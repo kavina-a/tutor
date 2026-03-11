@@ -188,33 +188,6 @@ video {
   -webkit-appearance: none;
 }
 
-.loader-center {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 10;
-}
-
-.loader-word {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: clamp(2rem, 8vw, 5rem);
-  color: rgba(255, 255, 255, 0.85);
-  opacity: 0;
-  letter-spacing: -0.02em;
-  text-transform: lowercase;
-  text-align: center;
-}
-
-.loader-word.is-final {
-  color: var(--accent-teal);
-  text-transform: none;
-  font-size: clamp(2.8rem, 10vw, 7rem);
-  letter-spacing: -0.03em;
-}
-
 /* ─── DOT NAVIGATION ────────────────────────────────────────── */
 .dot-nav {
   position: fixed;

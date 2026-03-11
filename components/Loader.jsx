@@ -9,18 +9,39 @@ export default function Loader() {
     const video = videoRef.current;
     if (!video) return;
 
-    // React doesn't reliably apply the `muted` HTML attribute — set it as a
-    // DOM property so mobile browsers (iOS Safari, Android Chrome) honour it
-    // and allow autoplay without user interaction.
-    video.muted = true;
+    const tryPlay = () => {
+      video.muted = true;
+      video.defaultMuted = true;
+      const playPromise = video.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {
+          // Ignore autoplay blocks. We'll retry on canplay/visibility/first touch.
+        });
+      }
+    };
 
-    const playPromise = video.play();
-    if (playPromise !== undefined) {
-      playPromise.catch(() => {
-        // Autoplay was blocked — silently ignore; the loader will still fade
-        // out via the GSAP timeline in animations.js.
-      });
-    }
+    tryPlay();
+
+    const onCanPlay = () => tryPlay();
+    const onVisibility = () => {
+      if (!document.hidden) tryPlay();
+    };
+    const onFirstTouch = () => tryPlay();
+
+    video.addEventListener("canplay", onCanPlay);
+    video.addEventListener("loadeddata", onCanPlay);
+    document.addEventListener("visibilitychange", onVisibility);
+    document.addEventListener("touchstart", onFirstTouch, {
+      once: true,
+      passive: true,
+    });
+
+    return () => {
+      video.removeEventListener("canplay", onCanPlay);
+      video.removeEventListener("loadeddata", onCanPlay);
+      document.removeEventListener("visibilitychange", onVisibility);
+      document.removeEventListener("touchstart", onFirstTouch);
+    };
   }, []);
 
   return (
@@ -34,13 +55,13 @@ export default function Loader() {
         muted
         loop
         playsInline
+        preload="auto"
+        controls={false}
+        disablePictureInPicture
         // older iOS Safari needs the webkit- prefixed attribute
         {...{ "webkit-playsinline": "true" }}
         aria-hidden="true"
       />
-      <div className="loader-center" id="loaderCenter">
-        <span className="loader-word" id="loaderWord" />
-      </div>
     </div>
   );
 }

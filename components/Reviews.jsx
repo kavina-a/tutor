@@ -110,7 +110,6 @@ export default function Reviews() {
             <div
               key={convo.label}
               className="chat-card"
-              data-slide-label={convo.label}
               data-slide-color={convo.color}
             >
               <div className="chat-card__header">
