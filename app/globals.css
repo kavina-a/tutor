@@ -1742,6 +1742,12 @@ video {
 
   .marquee {
     margin-bottom: 32px;
+    padding: 10px 0;
+  }
+
+  .marquee-track span {
+    font-size: 0.55rem;
+    letter-spacing: 0.12em;
   }
 
   /* ── ABOUT ────────────────────────────────────────────────── */
