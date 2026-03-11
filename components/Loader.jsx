@@ -20,12 +20,12 @@ export default function Loader() {
     video.setAttribute("preload", "auto");
     video.setAttribute("aria-hidden", "true");
 
-    video.muted       = true;
-    video.loop        = true;
+    video.muted = true;
+    video.loop = true;
     video.playsInline = true;
-    video.className   = "loader-video";
-    video.id          = "loaderVideo";
-    video.src         = "/assets/videos/loader-bg.mp4";
+    video.className = "loader-video";
+    video.id = "loaderVideo";
+    video.src = "/assets/videos/loader-bg.mp4";
 
     container.appendChild(video);
 
@@ -35,16 +35,18 @@ export default function Loader() {
       if (p && typeof p.catch === "function") p.catch(() => {});
     };
 
-    const onVisibility = () => { if (!document.hidden) tryPlay(); };
+    const onVisibility = () => {
+      if (!document.hidden) tryPlay();
+    };
 
-    video.addEventListener("canplay",    tryPlay);
+    video.addEventListener("canplay", tryPlay);
     video.addEventListener("loadeddata", tryPlay);
     document.addEventListener("visibilitychange", onVisibility);
 
     tryPlay();
 
     return () => {
-      video.removeEventListener("canplay",    tryPlay);
+      video.removeEventListener("canplay", tryPlay);
       video.removeEventListener("loadeddata", tryPlay);
       document.removeEventListener("visibilitychange", onVisibility);
       video.pause();
