@@ -1,21 +1,52 @@
 export default function Hero() {
   const cards = [
-    { rotation: '-15', x: '-220', color: '#ff6b6b', img: 'card-algebra.png',    alt: 'Algebra'    },
-    { rotation: '-7',  x: '-110', color: '#4ecdc4', img: 'card-calculus.png',   alt: 'Calculus'   },
-    { rotation: '0',   x: '0',   color: '#ffe66d', img: 'card-geometry.png',   alt: 'Geometry'   },
-    { rotation: '7',   x: '110',  color: '#a8e6cf', img: 'card-statistics.png', alt: 'Statistics' },
-    { rotation: '15',  x: '220',  color: '#dda0dd', img: 'card-trig.png',       alt: 'Trig'       },
+    {
+      rotation: "-15",
+      x: "-220",
+      color: "#ff6b6b",
+      img: "card-algebra.png",
+      alt: "Algebra",
+    },
+    {
+      rotation: "-7",
+      x: "-110",
+      color: "#4ecdc4",
+      img: "card-calculus.png",
+      alt: "Calculus",
+    },
+    {
+      rotation: "0",
+      x: "0",
+      color: "#ffe66d",
+      img: "card-geometry.png",
+      alt: "Geometry",
+    },
+    {
+      rotation: "7",
+      x: "110",
+      color: "#a8e6cf",
+      img: "card-statistics.png",
+      alt: "Statistics",
+    },
+    {
+      rotation: "15",
+      x: "220",
+      color: "#dda0dd",
+      img: "card-trig.png",
+      alt: "Trig",
+    },
   ];
 
   const marqueeText =
-    'EDEXCEL IGCSE \u00b7 CAMBRIDGE IGCSE \u00b7 GCSE 9\u20131 MATHS \u00b7 EDEXCEL A-LEVEL MATHS \u00b7 PURE MATHEMATICS \u00b7 IAL MATHEMATICS \u00b7 EXAM PREPARATION \u00b7 ALGEBRA \u00b7 TRIGONOMETRY \u00b7 CALCULUS \u00b7 STATISTICS \u00b7 PROBLEM SOLVING \u00b7 ';
+    "EDEXCEL IGCSE \u00b7 CAMBRIDGE IGCSE \u00b7 GCSE 9\u20131 MATHS \u00b7 EDEXCEL A-LEVEL MATHS \u00b7 PURE MATHEMATICS \u00b7 IAL MATHEMATICS \u00b7 EXAM PREPARATION \u00b7 ALGEBRA \u00b7 TRIGONOMETRY \u00b7 CALCULUS \u00b7 STATISTICS \u00b7 PROBLEM SOLVING \u00b7 ";
 
   return (
     <section id="hero" className="section section--light">
       {/* Top bar */}
       <div className="hero-top">
-        <span className="hero-top__location">MATH TUTOR \u2014 WORLDWIDE</span>
-        <span className="hero-top__email">kavina@tutoring.com</span>
+        <span className="hero-top__location">0760796819</span>
+        <span className="hero-top__email">kmanthuka@gmail.com</span>
+
       </div>
 
       {/* Heading */}
@@ -32,7 +63,7 @@ export default function Hero() {
             className="topic-card"
             data-base-rotation={c.rotation}
             data-base-x={c.x}
-            style={{ '--card-color': c.color }}
+            style={{ "--card-color": c.color }}
           >
             <img
               src={`/assets/images/${c.img}`}
