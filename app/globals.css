@@ -1493,8 +1493,11 @@ video {
 }
 
 .video-action--mute .video-action__icon {
-  font-size: 1.35rem;
-  line-height: 1;
+  width: 1.35rem;
+  height: 1.35rem;
+  flex-shrink: 0;
+  display: block;
+  color: inherit;
 }
 
 .video-action--mute span:not(.video-action__icon) {

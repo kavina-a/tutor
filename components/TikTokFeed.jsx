@@ -1,7 +1,70 @@
 "use client";
 
 import { useState, useLayoutEffect, useEffect } from "react";
-import { videos } from "@/lib/videosData";
+import { videos, videoFilters } from "@/lib/videosData";
+
+/** Minimal stroke icons — speaker + slash / waves */
+function IconVolumeOff() {
+  return (
+    <svg
+      className="video-action__icon"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden
+    >
+      <polygon
+        points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinejoin="round"
+      />
+      <line
+        x1="17"
+        y1="9"
+        x2="23"
+        y2="15"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      />
+      <line
+        x1="23"
+        y1="9"
+        x2="17"
+        y2="15"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
+function IconVolumeOn() {
+  return (
+    <svg
+      className="video-action__icon"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden
+    >
+      <polygon
+        points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M15.54 8.46a5 5 0 0 1 0 7.07M19.07 4.93a10 10 0 0 1 0 14.14"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
 
 export default function TikTokFeed() {
   const [filter, setFilter] = useState("all");
@@ -30,7 +93,9 @@ export default function TikTokFeed() {
   }, [filter]);
 
   const filteredVideos =
-    filter === "all" ? videos : videos.filter((v) => v.cat === filter);
+    filter === "all"
+      ? videos
+      : videos.filter((v) => v.filterKey === filter);
 
   return (
     <section id="tiktok" className="section section--black">
@@ -40,47 +105,27 @@ export default function TikTokFeed() {
         </span>
         <h2 className="feed-title">Short Lessons</h2>
         <div className="feed-filters">
-          <button
-            type="button"
-            className={`filter-btn ${filter === "all" ? "active" : ""}`}
-            onClick={() => setFilter("all")}
-          >
-            All
-          </button>
-          <button
-            type="button"
-            className={`filter-btn ${filter === "algebra" ? "active" : ""}`}
-            onClick={() => setFilter("algebra")}
-          >
-            Algebra
-          </button>
-          <button
-            type="button"
-            className={`filter-btn ${filter === "calculus" ? "active" : ""}`}
-            onClick={() => setFilter("calculus")}
-          >
-            Calculus
-          </button>
-          <button
-            type="button"
-            className={`filter-btn ${filter === "fun" ? "active" : ""}`}
-            onClick={() => setFilter("fun")}
-          >
-            Fun Facts
-          </button>
-          <button
-            type="button"
-            className={`filter-btn ${filter === "exam" ? "active" : ""}`}
-            onClick={() => setFilter("exam")}
-          >
-            Exam Tips
-          </button>
+          {videoFilters.map(({ key, label }) => (
+            <button
+              key={key}
+              type="button"
+              className={`filter-btn ${filter === key ? "active" : ""}`}
+              onClick={() => setFilter(key)}
+            >
+              {label}
+            </button>
+          ))}
         </div>
       </div>
 
       <div className="video-feed" data-lenis-prevent>
         {filteredVideos.map((v) => (
-          <div key={v.id} className="video-item" data-category={v.cat}>
+          <div
+            key={v.id}
+            className="video-item"
+            data-category={v.cat}
+            data-filter-key={v.filterKey}
+          >
             <video
               className="video-player"
               controls={showControls}
@@ -115,9 +160,7 @@ export default function TikTokFeed() {
                     aria-label={muted ? "Turn sound on" : "Turn sound off"}
                     aria-pressed={!muted}
                   >
-                    <span className="video-action__icon" aria-hidden>
-                      {muted ? "🔇" : "🔊"}
-                    </span>
+                    {muted ? <IconVolumeOff /> : <IconVolumeOn />}
                     <span>{muted ? "Sound" : "Mute"}</span>
                   </button>
                 )}
