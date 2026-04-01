@@ -3,6 +3,33 @@
 import { useState, useLayoutEffect, useEffect } from "react";
 import { videos, videoFilters } from "@/lib/videosData";
 
+/** Ignore pointer movement over this distance so scroll swipes don’t toggle play */
+const TAP_MAX_PX = 14;
+
+function videoTapPointerDown(e) {
+  if (e.button !== 0) return;
+  e.currentTarget._tiktokTap = { x: e.clientX, y: e.clientY };
+}
+
+function videoTapPointerUp(e) {
+  const layer = e.currentTarget;
+  const start = layer._tiktokTap;
+  delete layer._tiktokTap;
+  if (!start) return;
+  const dx = Math.abs(e.clientX - start.x);
+  const dy = Math.abs(e.clientY - start.y);
+  if (dx > TAP_MAX_PX || dy > TAP_MAX_PX) return;
+  const video = layer.closest(".video-item")?.querySelector("video");
+  if (!video) return;
+  if (video.paused) {
+    video.removeAttribute("data-manual-pause");
+    video.play().catch(() => {});
+  } else {
+    video.setAttribute("data-manual-pause", "true");
+    video.pause();
+  }
+}
+
 /** Minimal stroke icons — speaker + slash / waves */
 function IconVolumeOff() {
   return (
@@ -142,6 +169,17 @@ export default function TikTokFeed() {
               <source src={v.videoUrl} type="video/mp4" />
               Your browser does not support the video tag.
             </video>
+            {!showControls && (
+              <div
+                className="video-item__tap"
+                aria-label="Tap to play or pause"
+                onPointerDown={videoTapPointerDown}
+                onPointerUp={videoTapPointerUp}
+                onPointerCancel={(e) => {
+                  delete e.currentTarget._tiktokTap;
+                }}
+              />
+            )}
             <div className="video-overlay">
               <div className="video-overlay__left">
                 <strong className="video-handle">@kavina.math</strong>

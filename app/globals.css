@@ -1396,6 +1396,17 @@ video {
   background: linear-gradient(135deg, var(--grad-1), var(--grad-2));
 }
 
+/* Tap-to-play/pause (mobile); scroll passes through via touch-action on mobile block */
+.video-item__tap {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: auto;
+  touch-action: pan-y;
+  background: transparent;
+  cursor: pointer;
+}
+
 /* Video player controls styling */
 .video-player {
   --controls-bg: rgba(0, 0, 0, 0.7);
@@ -1429,6 +1440,7 @@ video {
   bottom: 0;
   left: 0;
   right: 0;
+  z-index: 3;
   padding: 30px 16px 24px;
   background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
   display: flex;
