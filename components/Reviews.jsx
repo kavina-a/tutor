@@ -65,44 +65,50 @@ const conversations = [
     ],
   },
   {
-    label: "the excellence",
+    label: "the relief",
     color: "#a8e6cf",
     initial: "R",
     tag: "EDEXCEL IAL · 2024",
     bubbles: [
-      { side: "them", text: "Just got my IAL results back..." },
       {
         side: "them",
-        text: "A in Pure Mathematics, A in Statistics & Mechanics! 🎊",
+        text: "Mechanics paper in the morning and I can't sleep. Every time I close my eyes it's moments questions and I go blank",
       },
       {
         side: "them",
-        text: "Your systematic approach to each unit made the workload feel so manageable",
+        text: "That ladder question we did last Sunday—basically the same thing came up. I actually wrote a full answer and didn't panic",
+      },
+      {
+        side: "them",
+        text: "Results: merit for that unit. I was steeling myself for a fail. Sorry I kept cancelling homework, I know I was all over the place",
       },
       {
         side: "me",
-        text: "Straight A's across the board! Your hard work really paid off. Congratulations! 🏆",
+        text: "You weren't all over the place—you were scared and you still kept showing up. That merit is yours. So glad you don't have to resit 💪",
       },
     ],
   },
   {
-    label: "the transformation",
+    label: "the offer",
     color: "#ffe66d",
     initial: "L",
     tag: "EDEXCEL IAL · 2025",
     bubbles: [
-      { side: "them", text: "I'm going to UCL for Engineering!" },
       {
         side: "them",
-        text: "Just realized it's partly because of the A* you helped me get in IAL maths",
+        text: "My firm wants an A in maths. Mock was a B like six weeks ago and I genuinely thought I'd be going through clearing",
       },
       {
         side: "them",
-        text: "You didn't just teach me maths, you made me believe I could do it",
+        text: "It's an A. I've refreshed UCAS so many times in case it glitched",
+      },
+      {
+        side: "them",
+        text: "My mum cried before I did lol. She's telling everyone it was tutoring but those past paper marathons at the end are what actually saved me",
       },
       {
         side: "me",
-        text: "UCL Engineering?! That's incredible! Your potential was always there, you just needed to see it 🚀",
+        text: "That A came from how hard you pushed in those last few weeks—you earned it. Hug your mum for me 😊",
       },
     ],
   },

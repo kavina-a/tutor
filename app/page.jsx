@@ -13,11 +13,13 @@ import WaCloud    from '@/components/WaCloud';
 
 export default function Home() {
   useEffect(() => {
-    let cleanup;
+    let stopAnimations;
     import('@/lib/animations').then(({ initAnimations }) => {
-      cleanup = initAnimations();
+      initAnimations().then((fn) => {
+        stopAnimations = fn;
+      });
     });
-    return () => cleanup?.();
+    return () => stopAnimations?.();
   }, []);
 
   return (
