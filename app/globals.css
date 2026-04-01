@@ -1480,6 +1480,29 @@ video {
   font-weight: 600;
 }
 
+.video-action--mute {
+  min-width: 52px;
+  min-height: 52px;
+  padding: 8px 6px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  font-size: 1.15rem;
+}
+
+.video-action--mute .video-action__icon {
+  font-size: 1.35rem;
+  line-height: 1;
+}
+
+.video-action--mute span:not(.video-action__icon) {
+  font-size: 0.58rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
 /* ─── WhatsApp Cloud Bubble ───────────────────────────────── */
 /* ─── WhatsApp Float Button ──────────────────────────────── */
 .wa-float-wrap {
@@ -1973,6 +1996,11 @@ video {
   .video-overlay .video-action {
     pointer-events: auto;
     cursor: pointer;
+  }
+
+  .video-overlay .video-action--mute {
+    order: -1;
+    margin-bottom: 4px;
   }
 
   /* ── WHATSAPP ─────────────────────────────────────────────── */

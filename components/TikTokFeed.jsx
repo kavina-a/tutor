@@ -6,10 +6,20 @@ import { videos } from "@/lib/videosData";
 export default function TikTokFeed() {
   const [filter, setFilter] = useState("all");
   const [showControls, setShowControls] = useState(false);
+  /** Mobile: start muted (autoplay); user toggles with the overlay button */
+  const [muted, setMuted] = useState(true);
 
   useLayoutEffect(() => {
     setShowControls(!window.matchMedia("(max-width: 768px)").matches);
   }, []);
+
+  useEffect(() => {
+    if (showControls) return;
+    document.querySelectorAll(".video-feed video").forEach((v) => {
+      v.muted = muted;
+      if (!muted) v.play().catch(() => {});
+    });
+  }, [muted, showControls]);
 
   useEffect(() => {
     let cleanup;
@@ -74,13 +84,15 @@ export default function TikTokFeed() {
             <video
               className="video-player"
               controls={showControls}
-              muted
               playsInline
               preload="none"
               disablePictureInPicture
               disableRemotePlayback
               poster={v.thumbnail || undefined}
               style={{ "--grad-1": v.grad1, "--grad-2": v.grad2 }}
+              {...(showControls
+                ? { defaultMuted: true }
+                : { muted })}
             >
               <source src={v.videoUrl} type="video/mp4" />
               Your browser does not support the video tag.
@@ -92,6 +104,23 @@ export default function TikTokFeed() {
                 <span className="video-tag">{v.tags}</span>
               </div>
               <div className="video-overlay__right">
+                {!showControls && (
+                  <button
+                    type="button"
+                    className="video-action video-action--mute"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setMuted((m) => !m);
+                    }}
+                    aria-label={muted ? "Turn sound on" : "Turn sound off"}
+                    aria-pressed={!muted}
+                  >
+                    <span className="video-action__icon" aria-hidden>
+                      {muted ? "🔇" : "🔊"}
+                    </span>
+                    <span>{muted ? "Sound" : "Mute"}</span>
+                  </button>
+                )}
                 <button type="button" className="video-action">
                   &hearts;<span>{v.likes}</span>
                 </button>

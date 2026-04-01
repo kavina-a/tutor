@@ -65,50 +65,44 @@ const conversations = [
     ],
   },
   {
-    label: "the relief",
+    label: "from mum",
     color: "#a8e6cf",
-    initial: "R",
-    tag: "EDEXCEL IAL · 2024",
+    initial: "M",
+    senderLabel: "Parent",
+    tag: "EDEXCEL IGCSE (9-1) · 2025",
     bubbles: [
       {
         side: "them",
-        text: "Mechanics paper in the morning and I can't sleep. Every time I close my eyes it's moments questions and I go blank",
+        text: "Hi Kavina — his mocks were months ago and he really didn't do well. I was so worried.",
       },
       {
         side: "them",
-        text: "That ladder question we did last Sunday—basically the same thing came up. I actually wrote a full answer and didn't panic",
-      },
-      {
-        side: "them",
-        text: "Results: merit for that unit. I was steeling myself for a fail. Sorry I kept cancelling homework, I know I was all over the place",
+        text: "You've got him to a straight 8 in just a few months. Thank you from all of us ❤️",
       },
       {
         side: "me",
-        text: "You weren't all over the place—you were scared and you still kept showing up. That merit is yours. So glad you don't have to resit 💪",
+        text: "That means a lot. He put the work in, you should be proud too 😊",
       },
     ],
   },
   {
-    label: "the offer",
+    label: "home",
     color: "#ffe66d",
-    initial: "L",
-    tag: "EDEXCEL IAL · 2025",
+    initial: "P",
+    senderLabel: "Parent",
+    tag: "EDEXCEL IGCSE (9-1) · 2024",
     bubbles: [
       {
         side: "them",
-        text: "My firm wants an A in maths. Mock was a B like six weeks ago and I genuinely thought I'd be going through clearing",
+        text: "Wanted to say thank you properly — she was struggling badly before we found you.",
       },
       {
         side: "them",
-        text: "It's an A. I've refreshed UCAS so many times in case it glitched",
-      },
-      {
-        side: "them",
-        text: "My mum cried before I did lol. She's telling everyone it was tutoring but those past paper marathons at the end are what actually saved me",
+        text: "Such a turnaround. We're really grateful Kavina 🙏",
       },
       {
         side: "me",
-        text: "That A came from how hard you pushed in those last few weeks—you earned it. Hug your mum for me 😊",
+        text: "Thank you for trusting me with her. She's done brilliantly 💪",
       },
     ],
   },
@@ -140,7 +134,7 @@ export default function Reviews() {
                 <div className="chat-card__profile">
                   <div className="chat-card__avatar">{convo.initial}</div>
                   <div className="chat-card__meta">
-                    <strong>Student</strong>
+                    <strong>{convo.senderLabel ?? "Student"}</strong>
                     <span className="chat-card__online">&bull; online</span>
                   </div>
                 </div>
