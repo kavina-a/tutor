@@ -94,7 +94,7 @@ const conversations = [
     bubbles: [
       {
         side: "them",
-        text: "Wanted to say thank you properly — she was struggling badly before we found you.",
+        text: "Wanted to say thank you properly she was struggling badly before we found you.",
       },
       {
         side: "them",
