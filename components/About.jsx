@@ -51,7 +51,7 @@ const chapters = [
 ];
 
 const stats = [
-  { target: "200", suffix: "+", label: "Students Taught" },
+  { target: "50", suffix: "+", label: "Students Taught" },
   { target: "98", suffix: "%", label: "Pass Rate" },
   { target: "4.9", suffix: "\u2605", label: "Average Rating" },
   { target: "500", suffix: "+", label: "Hours Tutored" },
