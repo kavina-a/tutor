@@ -23,7 +23,10 @@ function videoTapPointerUp(e) {
   if (!video) return;
   if (video.paused) {
     video.removeAttribute("data-manual-pause");
-    video.play().catch(() => {});
+    /* Resume after user pause — play in next frame so IO doesn’t race the same tick */
+    requestAnimationFrame(() => {
+      video.play().catch(() => {});
+    });
   } else {
     video.setAttribute("data-manual-pause", "true");
     video.pause();
@@ -107,7 +110,10 @@ export default function TikTokFeed() {
     if (showControls) return;
     document.querySelectorAll(".video-feed video").forEach((v) => {
       v.muted = muted;
-      if (!muted) v.play().catch(() => {});
+      /* Don’t override a user-paused clip; unmute shouldn’t force play */
+      if (!muted && v.getAttribute("data-manual-pause") !== "true") {
+        v.play().catch(() => {});
+      }
     });
   }, [muted, showControls]);
 
